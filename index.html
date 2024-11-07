@@ -14,17 +14,25 @@
         return localStorage.getItem('isAdmin') === 'true';
     }
 
-    window.onload = function() {
+    // 页面加载完成后执行
+    document.addEventListener('DOMContentLoaded', function() {
         const statsElement = document.querySelector('.visitor-stats');
         const logoutBtn = document.getElementById('logoutBtn');
+        const loginBtn = document.getElementById('loginBtn');
         
-        if (!checkAdmin()) {
-            statsElement.style.display = 'none';
-        } else {
+        // 检查管理员状态
+        if (checkAdmin()) {
+            statsElement.style.display = 'block';
             logoutBtn.style.display = 'inline-block';
+            loginBtn.style.display = 'none';
+        } else {
+            statsElement.style.display = 'none';
+            logoutBtn.style.display = 'none';
+            loginBtn.style.display = 'inline-block';
         }
-    }
+    });
 
+    // 登出功能
     function logout() {
         localStorage.removeItem('isAdmin');
         window.location.reload();
@@ -102,6 +110,7 @@
             text-align: center;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             max-width: 1200px;
+            display: none;
         }
 
         .visitor-stats span {
@@ -214,6 +223,7 @@
                 <a href="/categories">分类</a>
                 <a href="/archive">归档</a>
                 <a href="/about">关于</a>
+                <a href="/admin.html" id="loginBtn">登录</a>
                 <a href="javascript:void(0)" onclick="logout()" id="logoutBtn" style="display: none;">登出</a>
             </div>
         </div>
