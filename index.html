@@ -7,130 +7,268 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
         }
+
         header {
-            background-color: #4CAF50;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
+            padding: 2rem 0;
             text-align: center;
-            padding: 1em 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
+
+        .header-content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
         nav {
-            display: flex;
-            justify-content: center;
-            background-color: #333;
+            background-color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
+
         nav a {
-            color: white;
-            padding: 14px 20px;
+            color: var(--primary-color);
             text-decoration: none;
-            text-align: center;
+            padding: 0.5rem 1rem;
+            margin: 0 0.5rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
+
         nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        main {
-            padding: 20px;
-            max-width: 800px;
-            margin: auto;
-        }
-        footer {
-            text-align: center;
-            padding: 1em 0;
-            background-color: #333;
+            background-color: var(--accent-color);
             color: white;
-            position: fixed;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .project-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             width: 100%;
-            bottom: 0;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .media-item {
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .media-item img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+
+        .social-links {
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            nav {
+                padding: 0.5rem 0;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
         }
     </style>
-    <meta name="description" content="这是一个关于我的个人网站。">
-    <meta name="keywords" content="个人网站, 关于我, 联系">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-XXXXX-Y');
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "您的姓名",
-      "url": "https://yourwebsite.com",
-      "sameAs": [
-        "https://www.facebook.com/yourprofile",
-        "https://www.twitter.com/yourprofile"
-      ]
-    }
-    </script>
 </head>
 <body>
     <header>
-        <h1>欢迎来到我的个人网站</h1>
+        <div class="header-content">
+            <h1>欢迎来到我的个人网站</h1>
+            <p>热爱技术 · 分享生活 · 探索未来</p>
+        </div>
     </header>
-    <nav>
-        <a href="index.html">首页</a>
-        <a href="about.html">关于我</a>
-        <a href="contact.html">联系我</a>
+
+    <nav class="text-center">
+        <a href="#home">首页</a>
+        <a href="#about">关于我</a>
+        <a href="#projects">项目</a>
+        <a href="#contact">联系我</a>
     </nav>
+
     <main>
         <section id="about">
             <h2>关于我</h2>
-            <p>你好！我是一个热爱编程和技术的开发者。我喜欢学习新技术并应用于实际项目中。</p>
+            <p>你好！我是一个热爱编程和技术的开发者。我喜欢学习新技术并应用于实际项目中。在这里，我会分享我的学习经验和项目成果。</p>
         </section>
+
         <section id="projects">
-            <h2>项目</h2>
-            <ul>
-                <li>项目1：<a href="#">项目链接</a></li>
-                <li>项目2：<a href="#">项目链接</a></li>
-                <li>项目3：<a href="#">项目链接</a></li>
-            </ul>
+            <h2>我的项目</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>项目一</h3>
+                    <p>这是一个关于XXX的项目，主要使用了XXX技术。</p>
+                    <a href="#" class="btn btn-sm">了解更多</a>
+                </div>
+                <div class="project-card">
+                    <h3>项目二</h3>
+                    <p>这是一个关于XXX的项目，主要使用了XXX技术。</p>
+                    <a href="#" class="btn btn-sm">了解更多</a>
+                </div>
+                <div class="project-card">
+                    <h3>项目三</h3>
+                    <p>这是一个关于XXX的项目，主要使用了XXX技术。</p>
+                    <a href="#" class="btn btn-sm">了解更多</a>
+                </div>
+            </div>
         </section>
-        <section id="interaction">
-            <h2>互动</h2>
-            <button id="myButton" class="btn btn-primary">点击我</button>
-            <p id="message" style="display:none;">你点击了按钮！</p>
-        </section>
+
         <section id="media">
-            <h2>媒体内容</h2>
-            <img src="path/to/image.jpg" alt="描述" width="300">
-            <video controls>
-                <source src="path/to/video.mp4" type="video/mp4">
-                您的浏览器不支持视频标签。
-            </video>
-            <i class="fas fa-camera"></i>
+            <h2>媒体展示</h2>
+            <div class="media-grid">
+                <div class="media-item">
+                    <img src="https://via.placeholder.com/300x200" alt="项目图片">
+                </div>
+                <div class="media-item">
+                    <img src="https://via.placeholder.com/300x200" alt="项目图片">
+                </div>
+                <div class="media-item">
+                    <img src="https://via.placeholder.com/300x200" alt="项目图片">
+                </div>
+            </div>
         </section>
+
         <section id="contact">
             <h2>联系我</h2>
-            <form action="https://formspree.io/f/yourformid" method="POST">
-                <input type="text" name="name" placeholder="姓名" required>
-                <input type="email" name="email" placeholder="邮箱" required>
-                <textarea name="message" placeholder="留言" required></textarea>
-                <button type="submit" class="btn btn-success">发送</button>
+            <form class="contact-form">
+                <input type="text" placeholder="您的姓名" required>
+                <input type="email" placeholder="您的邮箱" required>
+                <textarea rows="5" placeholder="您的留言" required></textarea>
+                <button type="submit" class="btn">发送消息</button>
             </form>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 我的个人网站</p>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        // JavaScript交互功能
-        document.getElementById('myButton').addEventListener('click', function() {
-            document.getElementById('message').style.display = 'block';
-        });
 
-        // Markdown示例
-        const markdown = '# 这是一个标题\n\n这是一些文本。';
-        document.getElementById('markdownContent').innerHTML = marked(markdown);
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy; 2024 我的个人网站 | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
     </script>
 </body>
 </html>
