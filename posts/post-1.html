@@ -1,1 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何搭建个人博客 - 我的博客</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-bg: #f5f6fa;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* 文章样式 */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .post {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .post-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .post-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-meta {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .post-content {
+            margin-top: 2rem;
+        }
+
+        .post-content h2 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem;
+        }
+
+        .post-content p {
+            margin: 1rem 0;
+        }
+
+        .post-content ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .post-content li {
+            margin: 0.5rem 0;
+        }
+
+        .post-content code {
+            background: var(--light-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+
+        .post-footer {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #eee;
+        }
+
+        .post-tags {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: var(--light-bg);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">我的博客</a>
+            <div class="nav-links">
+                <a href="../index.html">首页</a>
+                <a href="../categories.html">分类</a>
+                <a href="../archive.html">归档</a>
+                <a href="../about.html">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 文章内容 -->
+    <div class="container">
+        <article class="post">
+            <header class="post-header">
+                <h1 class="post-title">如何搭建个人博客</h1>
+                <div class="post-meta">
+                    <span><i class="far fa-calendar"></i> 2024-03-21</span>
+                    <span style="margin: 0 10px">|</span>
+                    <span><i class="far fa-folder"></i> 技术教程</span>
+                </div>
+            </header>
+
+            <div class="post-content">
+                <p>在这个信息爆炸的时代，拥有一个属于自己的博客变得越来越重要。它不仅是记录个人成长的平台，更是分享知识和经验的窗口。本文将详细介绍如何从零开始搭建一个个人博客。</p>
+
+                <h2>为什么要搭建个人博客？</h2>
+                <p>个人博客具有以下优势：</p>
+                <ul>
+                    <li>记录个人成长历程</li>
+                    <li>分享技术经验和心得</li>
+                    <li>建立个人品牌</li>
+                    <li>结识志同道合的朋友</li>
+                </ul>
+
+                <h2>博客搭建步骤</h2>
+                <p>搭建博客主要包含以下步骤：</p>
+                <ol>
+                    <li>选择合适的平台和技术栈</li>
+                    <li>设计网站结构和页面布局</li>
+                    <li>编写核心功能代码</li>
+                    <li>美化界面和用户体验</li>
+                    <li>部署和维护</li>
+                </ol>
+
+                <h2>技术选型建议</h2>
+                <p>对于初学者，我推荐以下技术栈：</p>
+                <ul>
+                    <li>前端：HTML5 + CSS3 + JavaScript</li>
+                    <li>框架：可以选择 Vue.js 或 React</li>
+                    <li>部署：GitHub Pages（免费托管）</li>
+                </ul>
+
+                <h2>注意事项</h2>
+                <p>在搭建博客时需要注意：</p>
+                <ul>
+                    <li>内容质量要保证</li>
+                    <li>定期更新和维护</li>
+                    <li>注意用户体验</li>
+                    <li>做好SEO优化</li>
+                </ul>
+            </div>
+
+            <footer class="post-footer">
+                <div class="post-tags">
+                    <a href="#" class="tag">博客搭建</a>
+                    <a href="#" class="tag">Web开发</a>
+                    <a href="#" class="tag">教程</a>
+                </div>
+            </footer>
+        </article>
+    </div>
+</body>
+</html>
