@@ -1,23 +1,312 @@
-<!-- 关于我部分的代码 -->
-<div class="about-content">
-    <h2>关于我</h2>
-    <p>你好！我是一名热爱技术的开发者。我专注于Web开发和用户体验设计，喜欢探索新技术并分享学习经验。</p>
-    
-    <p>我的博客主要关注以下几个方面：</p>
-    <ul style="list-style-type: none; padding-left: 0;">
-        <li>🚀 分享Web开发技术和经验</li>
-        <li>💡 探讨编程思想和最佳实践</li>
-        <li>📚 记录学习笔记和心得体会</li>
-        <li>🔧 分享实用的开发工具和技巧</li>
-    </ul>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我 - 个人博客</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --text-color: #333;
+            --light-bg: #f5f6fa;
+        }
 
-    <p>在这里，我会定期更新：</p>
-    <ul style="list-style-type: none; padding-left: 0;">
-        <li>📝 技术教程和学习指南</li>
-        <li>🌟 项目开发经验分享</li>
-        <li>💻 编程技巧和代码片段</li>
-        <li>🎯 个人成长和技术思考</li>
-    </ul>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
 
-    <p>欢迎志同道合的朋友一起交流学习，共同进步！</p>
-</div>
+        /* 导航栏样式 */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        /* 主要内容区域 */
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        .about-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 3px solid var(--accent-color);
+            padding: 3px;
+        }
+
+        .profile h1 {
+            color: var(--primary-color);
+            margin: 0.5rem 0;
+        }
+
+        .profile-title {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .social-links a {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .about-content h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .about-content ul {
+            margin: 1rem 0;
+        }
+
+        .about-content li {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: var(--light-bg);
+            border-radius: 4px;
+            transition: transform 0.2s ease;
+        }
+
+        .about-content li:hover {
+            transform: translateX(10px);
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .skill-item {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .contact-info {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+        }
+
+        .timeline {
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            border-left: 2px solid var(--accent-color);
+            padding-left: 20px;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            position: absolute;
+            left: -7px;
+            top: 5px;
+        }
+
+        .timeline-date {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .skills {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">我的博客</a>
+            <div class="nav-links">
+                <a href="index.html">首页</a>
+                <a href="categories.html">分类</a>
+                <a href="archive.html">归档</a>
+                <a href="about.html">关于</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <div class="about-section">
+            <!-- 个人资料 -->
+            <div class="profile">
+                <img src="path/to/your/photo.jpg" alt="个人照片" class="profile-img">
+                <h1>您的名字</h1>
+                <div class="profile-title">Web开发者 / 技术博主</div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-weixin"></i></a>
+                </div>
+            </div>
+
+            <!-- 关于我 -->
+            <div class="about-content">
+                <h2>关于我</h2>
+                <p>你好！我是一名热爱技术的开发者。我专注于Web开发和用户体验设计，喜欢探索新技术并分享学习经验。</p>
+                
+                <p>我的博客主要关注以下几个方面：</p>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li>🚀 分享Web开发技术和经验</li>
+                    <li>💡 探讨编程思想和最佳实践</li>
+                    <li>📚 记录学习笔记和心得体会</li>
+                    <li>🔧 分享实用的开发工具和技巧</li>
+                </ul>
+
+                <p>在这里，我会定期更新：</p>
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li>📝 技术教程和学习指南</li>
+                    <li>🌟 项目开发经验分享</li>
+                    <li>💻 编程技巧和代码片段</li>
+                    <li>🎯 个人成长和技术思考</li>
+                </ul>
+
+                <p>欢迎志同道合的朋友一起交流学习，共同进步！</p>
+                
+                <h2>技能专长</h2>
+                <div class="skills">
+                    <div class="skill-item">HTML/CSS</div>
+                    <div class="skill-item">JavaScript</div>
+                    <div class="skill-item">Python</div>
+                    <div class="skill-item">Vue.js</div>
+                    <div class="skill-item">Node.js</div>
+                    <div class="skill-item">Git</div>
+                </div>
+
+                <h2>工作经历</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-date">2023 - 现在</div>
+                        <h3>高级Web开发工程师</h3>
+                        <p>ABC科技有限公司</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-date">2021 - 2023</div>
+                        <h3>前端开发工程师</h3>
+                        <p>XYZ互联网公司</p>
+                    </div>
+                </div>
+
+                <h2>联系方式</h2>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> Email: your.email@example.com</p>
+                    <p><i class="fab fa-weixin"></i> 微信: your_wechat_id</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
