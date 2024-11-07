@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的个人网站</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,15 +50,36 @@
             bottom: 0;
         }
     </style>
+    <meta name="description" content="这是一个关于我的个人网站。">
+    <meta name="keywords" content="个人网站, 关于我, 联系">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-XXXXX-Y');
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "您的姓名",
+      "url": "https://yourwebsite.com",
+      "sameAs": [
+        "https://www.facebook.com/yourprofile",
+        "https://www.twitter.com/yourprofile"
+      ]
+    }
+    </script>
 </head>
 <body>
     <header>
         <h1>欢迎来到我的个人网站</h1>
     </header>
     <nav>
-        <a href="#about">关于我</a>
-        <a href="#projects">项目</a>
-        <a href="#contact">联系我</a>
+        <a href="index.html">首页</a>
+        <a href="about.html">关于我</a>
+        <a href="contact.html">联系我</a>
     </nav>
     <main>
         <section id="about">
@@ -71,29 +94,43 @@
                 <li>项目3：<a href="#">项目链接</a></li>
             </ul>
         </section>
-        <section id="contact">
-            <h2>联系我</h2>
-            <p>你可以通过以下方式联系我：</p>
-            <ul>
-                <li>Email: example@example.com</li>
-                <li>GitHub: <a href="https://github.com/yourusername">yourusername</a></li>
-            </ul>
-        </section>
-        <!-- 添加按钮和消息 -->
         <section id="interaction">
             <h2>互动</h2>
-            <button id="myButton">点击我</button>
+            <button id="myButton" class="btn btn-primary">点击我</button>
             <p id="message" style="display:none;">你点击了按钮！</p>
+        </section>
+        <section id="media">
+            <h2>媒体内容</h2>
+            <img src="path/to/image.jpg" alt="描述" width="300">
+            <video controls>
+                <source src="path/to/video.mp4" type="video/mp4">
+                您的浏览器不支持视频标签。
+            </video>
+            <i class="fas fa-camera"></i>
+        </section>
+        <section id="contact">
+            <h2>联系我</h2>
+            <form action="https://formspree.io/f/yourformid" method="POST">
+                <input type="text" name="name" placeholder="姓名" required>
+                <input type="email" name="email" placeholder="邮箱" required>
+                <textarea name="message" placeholder="留言" required></textarea>
+                <button type="submit" class="btn btn-success">发送</button>
+            </form>
         </section>
     </main>
     <footer>
         <p>&copy; 2023 我的个人网站</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         // JavaScript交互功能
         document.getElementById('myButton').addEventListener('click', function() {
             document.getElementById('message').style.display = 'block';
         });
+
+        // Markdown示例
+        const markdown = '# 这是一个标题\n\n这是一些文本。';
+        document.getElementById('markdownContent').innerHTML = marked(markdown);
     </script>
 </body>
 </html>
