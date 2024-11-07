@@ -5,37 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的个人博客</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <!-- 添加不蒜子统计脚本 -->
+    <!-- 不蒜子统计脚本 -->
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-    <!-- 在 index.html 的 head 中添加 -->
-<script>
-function checkAdmin() {
-    return localStorage.getItem('isAdmin') === 'true';
-}
-
-window.onload = function() {
-    const statsElement = document.querySelector('.visitor-stats');
-    if (!checkAdmin()) {
-        statsElement.style.display = 'none';
+    
+    <!-- 管理员检查脚本 -->
+    <script>
+    function checkAdmin() {
+        return localStorage.getItem('isAdmin') === 'true';
     }
-}
 
-// 添加登出功能
-function logout() {
-    localStorage.removeItem('isAdmin');
-    window.location.reload();
-}
-</script>
+    window.onload = function() {
+        const statsElement = document.querySelector('.visitor-stats');
+        const logoutBtn = document.getElementById('logoutBtn');
+        
+        if (!checkAdmin()) {
+            statsElement.style.display = 'none';
+        } else {
+            logoutBtn.style.display = 'inline-block';
+        }
+    }
 
-<!-- 在导航栏添加登出按钮（针对管理员） -->
-<div class="nav-links">
-    <a href="/">首页</a>
-    <a href="/categories">分类</a>
-    <a href="/archive">归档</a>
-    <a href="/about">关于</a>
-    <a href="javascript:void(0)" onclick="logout()" id="logoutBtn" style="display: none;">登出</a>
-</div>
+    function logout() {
+        localStorage.removeItem('isAdmin');
+        window.location.reload();
+    }
+    </script>
+
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -192,32 +187,6 @@ function logout() {
             border-bottom: 2px solid var(--accent-color);
         }
 
-        /* 搜索框样式 */
-        .search-box {
-            position: relative;
-            margin-left: 20px;
-        }
-        
-        .search-box input {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            width: 200px;
-        }
-        
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            display: none;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
         /* 响应式设计 */
         @media (max-width: 768px) {
             .container {
@@ -226,6 +195,11 @@ function logout() {
 
             .sidebar {
                 position: static;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
             }
         }
     </style>
@@ -240,6 +214,7 @@ function logout() {
                 <a href="/categories">分类</a>
                 <a href="/archive">归档</a>
                 <a href="/about">关于</a>
+                <a href="javascript:void(0)" onclick="logout()" id="logoutBtn" style="display: none;">登出</a>
             </div>
         </div>
     </nav>
@@ -271,7 +246,7 @@ function logout() {
                     </span>
                 </div>
                 <p>这是文章的摘要内容。您可以在这里放置文章的简短描述或者前几段内容...</p>
-                <a href="posts/post-1.html" class="read-more">阅读更多</a>
+                <a href="#" class="read-more">阅读更多</a>
             </article>
 
             <article class="post">
@@ -312,27 +287,6 @@ function logout() {
     </div>
 
     <script>
-        // 搜索功能
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
-        
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase();
-            if (query.length < 2) {
-                searchResults.style.display = 'none';
-                return;
-            }
-            
-            // 这里需要替换为实际的搜索逻辑
-            // 示例：从文章列表中搜索
-            const results = articles.filter(article => 
-                article.title.toLowerCase().includes(query) ||
-                article.content.toLowerCase().includes(query)
-            );
-            
-            displayResults(results);
-        });
-
         // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
