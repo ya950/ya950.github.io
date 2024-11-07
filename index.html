@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>我的个人博客</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- 添加不蒜子统计脚本 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -67,6 +69,39 @@
             color: white;
         }
 
+        /* 访问统计样式 */
+        .visitor-stats {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem auto;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            max-width: 1200px;
+        }
+
+        .visitor-stats span {
+            display: inline-block;
+            margin: 0 15px;
+            color: #666;
+            font-size: 0.9rem;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: var(--light-bg);
+            transition: all 0.3s ease;
+        }
+
+        .visitor-stats span:hover {
+            color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);
+        }
+
+        .visitor-stats i {
+            margin-right: 5px;
+            color: var(--accent-color);
+        }
+
         /* 主要内容区域 */
         .container {
             max-width: 1200px;
@@ -102,6 +137,10 @@
             margin-bottom: 1rem;
         }
 
+        .post-meta span {
+            margin-right: 15px;
+        }
+
         /* 侧边栏 */
         .sidebar {
             position: sticky;
@@ -122,6 +161,32 @@
             margin: 0 0 1rem 0;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--accent-color);
+        }
+
+        /* 搜索框样式 */
+        .search-box {
+            position: relative;
+            margin-left: 20px;
+        }
+        
+        .search-box input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 200px;
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            display: none;
+            max-height: 300px;
+            overflow-y: auto;
         }
 
         /* 响应式设计 */
@@ -150,6 +215,18 @@
         </div>
     </nav>
 
+    <!-- 访问统计 -->
+    <div class="visitor-stats">
+        <span id="busuanzi_container_site_pv">
+            <i class="fas fa-eye"></i> 
+            总访问量: <span id="busuanzi_value_site_pv">0</span> 次
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <i class="fas fa-user"></i> 
+            访客数: <span id="busuanzi_value_site_uv">0</span> 人
+        </span>
+    </div>
+
     <!-- 主要内容区域 -->
     <div class="container">
         <!-- 文章列表 -->
@@ -159,6 +236,10 @@
                 <div class="post-meta">
                     <span><i class="far fa-calendar"></i> 2024-01-20</span>
                     <span><i class="far fa-folder"></i> 技术分享</span>
+                    <span id="busuanzi_container_page_pv">
+                        <i class="fas fa-eye"></i> 
+                        阅读量: <span id="busuanzi_value_page_pv">0</span>
+                    </span>
                 </div>
                 <p>这是文章的摘要内容。您可以在这里放置文章的简短描述或者前几段内容...</p>
                 <a href="#" class="read-more">阅读更多</a>
@@ -169,6 +250,10 @@
                 <div class="post-meta">
                     <span><i class="far fa-calendar"></i> 2024-01-19</span>
                     <span><i class="far fa-folder"></i> 生活随笔</span>
+                    <span id="busuanzi_container_page_pv">
+                        <i class="fas fa-eye"></i> 
+                        阅读量: <span id="busuanzi_value_page_pv">0</span>
+                    </span>
                 </div>
                 <p>这是另一篇文章的摘要内容...</p>
                 <a href="#" class="read-more">阅读更多</a>
@@ -197,63 +282,29 @@
         </aside>
     </div>
 
-    <!-- 在导航栏添加搜索框 -->
-<div class="search-box">
-    <input type="text" id="searchInput" placeholder="搜索文章...">
-    <div id="searchResults" class="search-results"></div>
-</div>
-
-<style>
-    .search-box {
-        position: relative;
-        margin-left: 20px;
-    }
-    
-    .search-box input {
-        padding: 8px 12px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        width: 200px;
-    }
-    
-    .search-results {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: white;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        display: none;
-        max-height: 300px;
-        overflow-y: auto;
-    }
-</style>
-
-<script>
-    const searchInput = document.getElementById('searchInput');
-    const searchResults = document.getElementById('searchResults');
-    
-    searchInput.addEventListener('input', function() {
-        const query = this.value.toLowerCase();
-        if (query.length < 2) {
-            searchResults.style.display = 'none';
-            return;
-        }
-        
-        // 这里需要替换为实际的搜索逻辑
-        // 示例：从文章列表中搜索
-        const results = articles.filter(article => 
-            article.title.toLowerCase().includes(query) ||
-            article.content.toLowerCase().includes(query)
-        );
-        
-        displayResults(results);
-    });
-</script>
-
     <script>
-        // 添加平滑滚动效果
+        // 搜索功能
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase();
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+            
+            // 这里需要替换为实际的搜索逻辑
+            // 示例：从文章列表中搜索
+            const results = articles.filter(article => 
+                article.title.toLowerCase().includes(query) ||
+                article.content.toLowerCase().includes(query)
+            );
+            
+            displayResults(results);
+        });
+
+        // 平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
