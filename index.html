@@ -197,6 +197,61 @@
         </aside>
     </div>
 
+    <!-- 在导航栏添加搜索框 -->
+<div class="search-box">
+    <input type="text" id="searchInput" placeholder="搜索文章...">
+    <div id="searchResults" class="search-results"></div>
+</div>
+
+<style>
+    .search-box {
+        position: relative;
+        margin-left: 20px;
+    }
+    
+    .search-box input {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        width: 200px;
+    }
+    
+    .search-results {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        display: none;
+        max-height: 300px;
+        overflow-y: auto;
+    }
+</style>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        if (query.length < 2) {
+            searchResults.style.display = 'none';
+            return;
+        }
+        
+        // 这里需要替换为实际的搜索逻辑
+        // 示例：从文章列表中搜索
+        const results = articles.filter(article => 
+            article.title.toLowerCase().includes(query) ||
+            article.content.toLowerCase().includes(query)
+        );
+        
+        displayResults(results);
+    });
+</script>
+
     <script>
         // 添加平滑滚动效果
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
