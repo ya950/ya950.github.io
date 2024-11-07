@@ -7,6 +7,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- 添加不蒜子统计脚本 -->
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <!-- 在 index.html 的 head 中添加 -->
+<script>
+function checkAdmin() {
+    return localStorage.getItem('isAdmin') === 'true';
+}
+
+window.onload = function() {
+    const statsElement = document.querySelector('.visitor-stats');
+    if (!checkAdmin()) {
+        statsElement.style.display = 'none';
+    }
+}
+
+// 添加登出功能
+function logout() {
+    localStorage.removeItem('isAdmin');
+    window.location.reload();
+}
+</script>
+
+<!-- 在导航栏添加登出按钮（针对管理员） -->
+<div class="nav-links">
+    <a href="/">首页</a>
+    <a href="/categories">分类</a>
+    <a href="/archive">归档</a>
+    <a href="/about">关于</a>
+    <a href="javascript:void(0)" onclick="logout()" id="logoutBtn" style="display: none;">登出</a>
+</div>
     <style>
         :root {
             --primary-color: #2c3e50;
