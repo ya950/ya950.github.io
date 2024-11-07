@@ -1,28 +1,30 @@
-your-blog/
 
-├── index.html
+your-blog/ # 项目根目录
 
-├── categories.html
+├── index.html # 网站首页
 
-├── archive.html
+├── categories.html # 文章分类页面
 
-├── about.html
+├── archive.html # 文章归档页面
 
-├── posts/
+├── about.html # 关于我页面
 
-│      ├── post-1.html
+├── posts/ # 博客文章目录
 
-│      ├── post-2.html
+│ ├── post-1.html # 文章1
 
-│      └── ...
+│ ├── post-2.html # 文章2
 
-├── css/
+│ └── ... # 更多文章
 
-│   └── style.css
+├── css/ # CSS样式目录
 
-├── js/
+│ └── style.css # 主样式文件
 
-│   └── main.js
+├── js/ # JavaScript目录
 
-└── images/
-    └── ...
+│ └── main.js # 主JS文件
+
+└── images/ # 图片资源目录
+
+└── ... # 图片文件
